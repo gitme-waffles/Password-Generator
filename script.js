@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var specialCharacters = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var lowerCasedCharacters = ['b', 'c', 'd', 'e', 'a', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var lowerCasedCharacters = ['b', 'c', 'd', 'e', 'a', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var specialCharacters = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
 
 // Write password to the #password input
 
@@ -15,25 +15,46 @@ var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K
 
 function generatePassword(passwordLength) {
   console.log('passwordLength', passwordLength)
-  for (let i = 0; i < passwordLength; i++) {
-    // text += cars[i] + "<br>";
-    console.log('index', i)
-  } 
-  // var symbols = ;
   var resultUPPERCASE = confirm('do you want UPPERCASE?');
-  console.log({resultUPPERCASE});
   var resultLowercase = confirm('do you want lowercase?');
-  console.log({resultLowercase});
   var resultNumber = confirm('do you want Number?');
-  console.log({resultNumber});
   var resultSymbol = confirm('do you want Symbol?');
-  console.log({resultSymbol});
-  console.log({specialCharacters});
-  // console.log('generatePassword');
+  console.log({generatePassword});
+  
+  var characterArray = [];
+  
+  if (resultUPPERCASE) {
+    characterArray =  characterArray.concat(upperCasedCharacters)
+  }
+  
+  if (resultLowercase) {
+    characterArray =  characterArray.concat(lowerCasedCharacters)
+  }
+  
+  if (resultNumber) {
+    characterArray =  characterArray.concat(numericCharacters)
+  }
+  
+  if (resultSymbol) {
+    characterArray =  characterArray.concat(specialCharacters)
+  }
+
+  console.log({characterArray})
+  var password = '';
+
+  for (let i = 0; i < passwordLength; i++) {
+    var charIndex = Math.floor(Math.random() * characterArray.length);
+        // console.log({charIndex});
+        // console.log(characterArray[charIndex]);
+        password += characterArray[charIndex];
+        // console.log({password});
+
+  } 
+  console.log({password});
 }
 
 function writePassword() {
-  var passwordLength = prompt("What is the length of the password?");
+  var passwordLength = prompt("What is the length of the password?", 8);
   // if ()
 // console.log(passwordLength)
   var password = generatePassword(passwordLength);
