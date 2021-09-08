@@ -14,54 +14,55 @@ var specialCharacters = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?',
 // function generateRandom()
 
 function generatePassword(passwordLength) {
-  console.log('passwordLength', passwordLength)
   var resultUPPERCASE = confirm('do you want UPPERCASE?');
   var resultLowercase = confirm('do you want lowercase?');
   var resultNumber = confirm('do you want Number?');
   var resultSymbol = confirm('do you want Symbol?');
-  console.log({generatePassword});
-  
   var characterArray = [];
   
   if (resultUPPERCASE) {
-    characterArray =  characterArray.concat(upperCasedCharacters)
-  }
-  
+    characterArray = characterArray.concat(upperCasedCharacters);
+  }  
   if (resultLowercase) {
-    characterArray =  characterArray.concat(lowerCasedCharacters)
-  }
-  
+    characterArray = characterArray.concat(lowerCasedCharacters);
+  }  
   if (resultNumber) {
-    characterArray =  characterArray.concat(numericCharacters)
+    characterArray = characterArray.concat(numericCharacters);
   }
-  
   if (resultSymbol) {
-    characterArray =  characterArray.concat(specialCharacters)
+    characterArray = characterArray.concat(specialCharacters);
   }
-
-  console.log({characterArray})
+  if (characterArray.length == 0) {
+    alert("Must have at least one character type!");
+    return ''; 
+  }
   var password = '';
 
   for (let i = 0; i < passwordLength; i++) {
     var charIndex = Math.floor(Math.random() * characterArray.length);
-        // console.log({charIndex});
-        // console.log(characterArray[charIndex]);
-        password += characterArray[charIndex];
-        // console.log({password});
+    password += characterArray[charIndex];
+  }
 
-  } 
-  console.log({password});
+  return password;
 }
 
 function writePassword() {
-  var passwordLength = prompt("What is the length of the password?", 8);
-  // if ()
-// console.log(passwordLength)
-  var password = generatePassword(passwordLength);
-  //   var passwordText = document.querySelector("#password");
+  var passwordLength = Number(prompt("What is the length of the password? \nMust be between 8 & 128", 8));
+  console.log({ passwordLength })
 
-  // passwordText.value = password;
+  if (!(Number.isInteger(passwordLength))) {
+    alert('Must input a valid NUMBER');
+    return;
+  }
+  if ((passwordLength < 8) || (passwordLength > 128)) {
+    alert('Must input a NUMBER between 8 & 128');
+    return;
+  }
+  
+  var password = generatePassword(passwordLength);  
+  var passwordText = document.querySelector("#password");
 
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
