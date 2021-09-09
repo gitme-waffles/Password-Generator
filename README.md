@@ -10,4 +10,6 @@ Through a series of prompts the user can choose how the long the password will b
 
 * If the user doesn't choose at least one type of character an alert will notify the user they must pick at least one character type
 
+[Link to deployed site](https://gitme-waffles.github.io/Password-Generator/)
+
 ![Screenshot of application](./Assets/Images/pwg_scnsht.png/)
