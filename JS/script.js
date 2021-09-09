@@ -48,7 +48,6 @@ function generatePassword(passwordLength) {
 
 function writePassword() {
   var passwordLength = Number(prompt("What is the length of the password? \nMust be between 8 & 128", 8));
-  console.log({ passwordLength })
 
   if (!(Number.isInteger(passwordLength))) {
     alert('Must input a valid NUMBER');
